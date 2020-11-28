@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="DigitalMusicStoreSpringBootMvc" target="15" />
+      <module name="DigitalMusicStoreSpringBootMvc" target="14" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
