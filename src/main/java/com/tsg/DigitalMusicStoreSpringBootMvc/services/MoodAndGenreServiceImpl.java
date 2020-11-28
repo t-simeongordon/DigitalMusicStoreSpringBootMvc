@@ -18,12 +18,11 @@ public class MoodAndGenreServiceImpl implements MoodAndGenreService {
         Genre genre1 = new Genre();
         genre1.setKpop("kpop");
         genre1.setPop("Pop");
+        genre1.setRock("Rock");
+        genre1.setRnb("RnB");
         List<Genre> list = new ArrayList<>();
         list.add(genre1);
         MoodAndGenre moodAndGenre = new MoodAndGenre(list);
-
-//        return list;
         return moodAndGenre.getMoodAndGenre();
-
     }
 }
