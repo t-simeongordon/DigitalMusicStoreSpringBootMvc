@@ -1,7 +1,7 @@
 package com.tsg.DigitalMusicStoreSpringBootMvc.controller;
 
 import com.tsg.DigitalMusicStoreSpringBootMvc.model.Genre;
-import com.tsg.DigitalMusicStoreSpringBootMvc.model.TopCharts;
+import com.tsg.DigitalMusicStoreSpringBootMvc.entity.TopCharts;
 import com.tsg.DigitalMusicStoreSpringBootMvc.services.MusicContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

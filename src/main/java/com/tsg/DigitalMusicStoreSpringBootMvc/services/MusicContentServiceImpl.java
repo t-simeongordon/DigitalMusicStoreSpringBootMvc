@@ -1,8 +1,10 @@
 package com.tsg.DigitalMusicStoreSpringBootMvc.services;
 
+import com.tsg.DigitalMusicStoreSpringBootMvc.entity.AllSongs;
 import com.tsg.DigitalMusicStoreSpringBootMvc.model.Genre;
 import com.tsg.DigitalMusicStoreSpringBootMvc.model.MoodAndGenre;
-import com.tsg.DigitalMusicStoreSpringBootMvc.model.TopCharts;
+import com.tsg.DigitalMusicStoreSpringBootMvc.entity.TopCharts;
+import com.tsg.DigitalMusicStoreSpringBootMvc.repository.SongsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,9 @@ public class MusicContentServiceImpl implements MusicContentService {
 
     @Autowired
     private TopCharts topCharts;
+
+    @Autowired
+    private SongsRepository songsRepository;
 
     @Override
     public List<Genre> getMoodAndGenreList() {
@@ -33,13 +38,19 @@ public class MusicContentServiceImpl implements MusicContentService {
     @Override
     public List<TopCharts> getTopCharts() {
         TopCharts topCharts = new TopCharts();
-        topCharts.setId("id");
+        topCharts.setId(0L);
         topCharts.setSongName("song name");
         topCharts.setArtist("Artist");
         topCharts.setLikes("likes");
         topCharts.setViews("views");
         List<TopCharts> list = new ArrayList<>();
         list.add(topCharts);
-        return list;
+
+        for (TopCharts topCharts1 : songsRepository.findAll()) {
+            System.out.println("@@@@@@@@ topCharts1: " + topCharts1);
+        }
+
+        return (List<TopCharts>) songsRepository.findAll();
+//        return list;
     }
 }

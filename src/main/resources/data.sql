@@ -1,0 +1,1 @@
+INSERT INTO songs (song_id, song_name, artist, likes, views) VALUES (1, 'song name - test','artist - test', 'likes - test', 'views - test');

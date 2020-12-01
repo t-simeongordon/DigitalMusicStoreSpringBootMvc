@@ -1,8 +1,11 @@
-package com.tsg.DigitalMusicStoreSpringBootMvc.model;
+package com.tsg.DigitalMusicStoreSpringBootMvc.entity;
 
 import lombok.*;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+
+@Entity
 @Component
 @Getter
 @Setter
@@ -10,7 +13,11 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @Builder
 public class TopCharts {
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "song_id")
+    private Long id;
+    @Column(name = "song_name", nullable = false)
     private String songName;
     private String artist;
     private String likes;
