@@ -23,4 +23,6 @@ public class TopCharts {
     private String artist;
     private String likes;
     private String views;
+    @Column(name = "time_stamp", nullable = false)
+    private String timeStamp;
 }

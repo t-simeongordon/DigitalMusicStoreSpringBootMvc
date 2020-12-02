@@ -4,6 +4,8 @@ import com.tsg.DigitalMusicStoreSpringBootMvc.entity.AllSongs;
 import com.tsg.DigitalMusicStoreSpringBootMvc.model.Genre;
 import com.tsg.DigitalMusicStoreSpringBootMvc.model.MoodAndGenre;
 import com.tsg.DigitalMusicStoreSpringBootMvc.entity.TopCharts;
+import com.tsg.DigitalMusicStoreSpringBootMvc.model.SearchResults;
+import com.tsg.DigitalMusicStoreSpringBootMvc.repository.AllSongsRepository;
 import com.tsg.DigitalMusicStoreSpringBootMvc.repository.SongsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,9 @@ public class MusicContentServiceImpl implements MusicContentService {
 
     @Autowired
     private SongsRepository songsRepository;
+
+    @Autowired
+    private AllSongsRepository allSongsRepository;
 
     @Override
     public List<Genre> getMoodAndGenreList() {
@@ -47,10 +52,16 @@ public class MusicContentServiceImpl implements MusicContentService {
         list.add(topCharts);
 
         for (TopCharts topCharts1 : songsRepository.findAll()) {
-            System.out.println("@@@@@@@@ topCharts1: " + topCharts1);
+            System.out.println("@@@@@@@@ topCharts1: " + topCharts1.getSongName());
         }
 
         return (List<TopCharts>) songsRepository.findAll();
 //        return list;
+    }
+
+    @Override
+    public String saveSearchResults(SearchResults searchResults) {
+        allSongsRepository.save(new AllSongs(99L, searchResults.getSongName(), searchResults.getArtist(), searchResults.getLikes(), searchResults.getViews()));
+        return searchResults.getCorrelationId();
     }
 }
