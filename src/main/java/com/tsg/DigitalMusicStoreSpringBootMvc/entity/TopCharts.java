@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "songs")
 @Component
 @Getter
 @Setter
