@@ -2,12 +2,12 @@ package com.tsg.DigitalMusicStoreSpringBootMvc.controller;
 
 import com.tsg.DigitalMusicStoreSpringBootMvc.model.Genre;
 import com.tsg.DigitalMusicStoreSpringBootMvc.entity.TopCharts;
+import com.tsg.DigitalMusicStoreSpringBootMvc.model.SearchResults;
 import com.tsg.DigitalMusicStoreSpringBootMvc.services.MusicContentService;
+import org.hibernate.annotations.GeneratorType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +25,17 @@ public class dmsController {
     @GetMapping("/topchart")
     public ResponseEntity<List<TopCharts>> getTopCharts() {
         return ResponseEntity.ok().body(musicContentService.getTopCharts());
+    }
+
+    @PostMapping("/store/song")
+    public ResponseEntity<String> addSearchedContent(@RequestBody SearchResults body) {
+        final String correlationId = musicContentService.saveSearchResults(body);
+        return ResponseEntity.ok().body(correlationId);
+    }
+
+    @GetMapping("/searched/songs")
+    public ResponseEntity<?> getRecentSearches() {
+
+        return ResponseEntity.ok().body(musicContentService.getRecentSongs());
     }
 }
