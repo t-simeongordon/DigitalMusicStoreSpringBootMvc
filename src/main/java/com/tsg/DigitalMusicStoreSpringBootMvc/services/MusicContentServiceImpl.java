@@ -4,7 +4,6 @@ import com.tsg.DigitalMusicStoreSpringBootMvc.entity.AllSongs;
 import com.tsg.DigitalMusicStoreSpringBootMvc.model.Genre;
 import com.tsg.DigitalMusicStoreSpringBootMvc.model.MoodAndGenre;
 import com.tsg.DigitalMusicStoreSpringBootMvc.entity.TopCharts;
-import com.tsg.DigitalMusicStoreSpringBootMvc.model.RecentSongs;
 import com.tsg.DigitalMusicStoreSpringBootMvc.model.SearchResults;
 import com.tsg.DigitalMusicStoreSpringBootMvc.repository.AllSongsRepository;
 import com.tsg.DigitalMusicStoreSpringBootMvc.repository.SongsRepository;
