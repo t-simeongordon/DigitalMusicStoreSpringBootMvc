@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v0/music")
 public class dmsController {
     @Autowired
     MusicContentService musicContentService;
