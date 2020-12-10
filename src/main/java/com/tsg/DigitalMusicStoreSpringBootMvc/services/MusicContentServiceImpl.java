@@ -8,7 +8,9 @@ import com.tsg.DigitalMusicStoreSpringBootMvc.model.SearchResults;
 import com.tsg.DigitalMusicStoreSpringBootMvc.repository.AllSongsRepository;
 import com.tsg.DigitalMusicStoreSpringBootMvc.repository.SongsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +39,11 @@ public class MusicContentServiceImpl implements MusicContentService {
         List<Genre> list = new ArrayList<>();
         list.add(genre1);
         MoodAndGenre moodAndGenre = new MoodAndGenre(list);
-        return moodAndGenre.getMoodAndGenre();
+        try {
+            return moodAndGenre.getMoodAndGenre();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getLocalizedMessage(), e);
+        }
     }
 
     @Override
@@ -54,15 +60,22 @@ public class MusicContentServiceImpl implements MusicContentService {
         for (TopCharts topCharts1 : songsRepository.findAll()) {
             System.out.println("@@@@@@@@ topCharts1: " + topCharts1.getSongName());
         }
-
-        return (List<TopCharts>) songsRepository.findAll();
+        try {
+            return (List<TopCharts>) songsRepository.findAll();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getLocalizedMessage(), e);
+        }
 //        return list;
     }
 
     @Override
     public String saveSearchResults(SearchResults searchResults) {
         allSongsRepository.save(new AllSongs(99L, searchResults.getSongName(), searchResults.getArtist(), searchResults.getLikes(), searchResults.getViews()));
-        return searchResults.getCorrelationId().toString();
+        try {
+            return searchResults.getCorrelationId().toString();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getLocalizedMessage(), e);
+        }
     }
     
     @Override
@@ -83,6 +96,10 @@ public class MusicContentServiceImpl implements MusicContentService {
 //        add(songName,artist, likes
 //                , views);
 //        }
-        return (List<AllSongs>) allSongsRepository.findAll();
+        try {
+            return (List<AllSongs>) allSongsRepository.findAll();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getLocalizedMessage(), e);
+        }
     }
 }
