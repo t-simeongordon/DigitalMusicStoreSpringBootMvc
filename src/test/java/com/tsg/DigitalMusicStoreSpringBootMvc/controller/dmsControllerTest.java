@@ -45,8 +45,6 @@ public class dmsControllerTest {
 
     // Then
     response.andExpect(MockMvcResultMatchers.status().is2xxSuccessful());
-
-//    Assert.assertEquals(allSongsList,recentSongs);
   }
 
 }
